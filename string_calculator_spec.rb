@@ -37,4 +37,8 @@ describe StringCalculator do
   context 'Adding unlimited amount of numbers' do
     specify { expect(calc.add('1,2,3,4,5')).to eq(15) }
   end
+
+  context 'Handles newlines between numbers' do
+    specify { expect(calc.add('1\n2,3')).to eq(6)  }
+  end
 end
