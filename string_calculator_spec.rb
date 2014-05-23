@@ -41,4 +41,10 @@ describe StringCalculator do
   context 'Handles newlines between numbers' do
     specify { expect(calc.add('1\n2,3')).to eq(6)  }
   end
+
+  context 'Handles many delimiters' do
+    it 'Should return 12' do
+      calc.add("//@\n1@2@10@-1").should eq(12)
+    end
+  end
 end
