@@ -14,23 +14,11 @@ describe StringCalculator do
     it 'should return 2' do
       calc.add("2").should eq(2)
     end
-
-    it 'should return -3' do
-      calc.add("-3").should eq(-3)
-    end
   end
 
   context 'Adding two numbers in string' do
     it 'should return 14' do
       calc.add("8,6").should eq(14)
-    end
-
-    it 'should return -3' do
-      calc.add("-4,1").should eq(-3)
-    end
-
-    it 'should return -30' do
-      calc.add("-16,-14").should eq(-30)
     end
   end
 
@@ -44,7 +32,7 @@ describe StringCalculator do
 
   context 'Handles many delimiters' do
     it 'Should return 12' do
-      calc.add("//@\n1@2@10@-1").should eq(12)
+      calc.add("//@\n1@1@10").should eq(12)
     end
   end
 end
