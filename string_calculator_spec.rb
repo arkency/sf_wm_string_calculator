@@ -8,9 +8,7 @@ describe StringCalculator do
     it 'should return 0' do
       calc.add("").should eq(0)
     end
-  end
 
-  context 'Adding one number in string' do
     it 'should return 2' do
       calc.add("2").should eq(2)
     end
