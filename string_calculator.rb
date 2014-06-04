@@ -6,6 +6,6 @@ class StringCalculator
   private
 
   def extract_numbers(expression)
-    expression.gsub(/\\n/,",").split(',').map(&:to_i)
+    expression.split(/[,\\n]/).map(&:to_i)
   end
 end
