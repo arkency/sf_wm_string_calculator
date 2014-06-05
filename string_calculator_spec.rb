@@ -33,4 +33,10 @@ describe StringCalculator do
       calc.add("//@\n1@1@10").should eq(12)
     end
   end
+
+  context 'Calling with negative numbers' do
+    it 'Throws ann error' do
+      calc.add('-1000').should raise_error 'negatives not allowed -1000'
+    end
+  end
 end
