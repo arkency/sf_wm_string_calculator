@@ -1,4 +1,4 @@
-module StringCalculator 
+module StringCalculator
   class Calculator
     def add(expression)
       numbers = get_numbers(expression)
@@ -34,12 +34,13 @@ module StringCalculator
     end
 
     def check_numbers(numbers)
-      check_for_negatives(numbers) 
+      check_for_negatives(numbers)
     end
 
     def check_for_negatives(numbers)
-      negative = numbers.select { |num| num < 0 }.first
-      raise NoNegativesAllowed.new("negatives not allowed #{negative}") unless negative.nil?
+      numbers.select { |num| num < 0 }.tap do |negatives|
+        raise NoNegativesAllowed.new("negatives not allowed #{negatives.join(', ')}") unless negatives.empty?
+      end
     end
   end
 end
