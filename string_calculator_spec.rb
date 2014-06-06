@@ -36,7 +36,10 @@ describe StringCalculator do
 
   context 'Calling with negative numbers' do
     it 'Throws an error' do
-      expect { calc.add('-1000') }.to raise_error "negatives not allowed -1000"
+      expect { calc.add('-1000') }.to raise_error(
+        StringCalculator::NoNegativesAllowed, 
+        "negatives not allowed -1000"
+      )
     end
   end
 end

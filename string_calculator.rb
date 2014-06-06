@@ -1,6 +1,8 @@
 class StringCalculator
   DEFAULT_DELIMETER = /[,\\n]/
 
+  class NoNegativesAllowed < StandardError; end
+
   def add(expression)
     numbers = extract_numbers(expression)
     check_for_negatives(numbers)
@@ -16,6 +18,6 @@ class StringCalculator
 
   def check_for_negatives(numbers)
     negative = numbers.select { |num| num < 0 }.first
-    raise StandardError.new("negatives not allowed #{negative}") unless negative.nil?
+    raise NoNegativesAllowed.new("negatives not allowed #{negative}") unless negative.nil?
   end
 end
