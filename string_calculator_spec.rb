@@ -1,8 +1,8 @@
 require './string_calculator'
 
-describe StringCalculator do
+describe StringCalculator::Calculator do
 
-  subject(:calc) { StringCalculator.new }
+  subject(:calc) { StringCalculator::Calculator.new }
 
   context 'Adding empty string' do
     it 'should return 0' do
@@ -37,7 +37,7 @@ describe StringCalculator do
   context 'Calling with negative numbers' do
     it 'Throws an error' do
       expect { calc.add('-1000') }.to raise_error(
-        StringCalculator::NoNegativesAllowed, 
+        StringCalculator::Input::NoNegativesAllowed, 
         "negatives not allowed -1000"
       )
     end
