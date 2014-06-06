@@ -32,12 +32,19 @@ describe StringCalculator::Calculator do
     it 'Should return 12' do
       calc.add("//@\n1@1@10").should eq(12)
     end
+
+    it 'should allow linebreak as a delimeter' do
+      calc.add("//\n
+               1
+               1
+               10").should eq(12)
+    end
   end
 
   context 'Calling with negative numbers' do
     it 'Throws an error' do
       expect { calc.add('-1000') }.to raise_error(
-        StringCalculator::Input::NoNegativesAllowed, 
+        StringCalculator::Input::NoNegativesAllowed,
         "negatives not allowed -1000"
       )
     end
@@ -46,7 +53,7 @@ describe StringCalculator::Calculator do
   context 'Calling with many negative numbers' do
     it 'Throws an error' do
       expect { calc.add('-1000,-2000,-3000') }.to raise_error(
-        StringCalculator::Input::NoNegativesAllowed, 
+        StringCalculator::Input::NoNegativesAllowed,
         "negatives not allowed -1000, -2000, -3000"
       )
     end
