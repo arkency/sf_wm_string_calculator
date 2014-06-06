@@ -1,9 +1,13 @@
 module StringCalculator 
   class Calculator
     def add(expression)
-      input = Input.new(expression)
-      numbers = input.extract_numbers
+      numbers = get_numbers(expression)
       numbers.inject(0,:+)
+    end
+
+    def get_numbers(expression)
+      input = Input.new(expression)
+      numbers = input.get_numbers
     end
   end
 
@@ -16,15 +20,19 @@ module StringCalculator
       @input = input
     end
 
-    def extract_numbers
-      _, custom_delimeter, string = @input.match(%r{(\/\/(.{1}))?[\n]?(.*)}).captures
-      delimeter = custom_delimeter || DEFAULT_DELIMETER
-      numbers = string.to_s.split(delimeter).map(&:to_i)
+    def get_numbers
+      numbers = extract_numbers
       check_numbers(numbers)
       numbers
     end
 
     private
+    def extract_numbers
+      _, custom_delimeter, string = @input.match(%r{(\/\/(.{1}))?[\n]?(.*)}).captures
+      delimeter = custom_delimeter || DEFAULT_DELIMETER
+      string.to_s.split(delimeter).map(&:to_i)
+    end
+
     def check_numbers(numbers)
       check_for_negatives(numbers) 
     end
