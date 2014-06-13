@@ -12,7 +12,7 @@ module StringCalculator
   end
 
   class Input
-    DEFAULT_DELIMETER = /[,\\n]/
+    DEFAULT_DELIMITER = ","
 
     class NoNegativesAllowed < StandardError; end
 
@@ -28,9 +28,22 @@ module StringCalculator
 
     private
     def extract_numbers
-      _, custom_delimeter, string = @input.match(%r{(\/\/(.{1}))?[\n]?(.*)}).captures
-      delimeter = custom_delimeter || DEFAULT_DELIMETER
-      string.to_s.split(delimeter).map(&:to_i)
+      delimiter = get_delimiter
+      @input = sanitize_input(delimiter) unless delimiter == '\n' 
+      @input.split(delimiter).map(&:to_i)
+    end
+
+    def get_delimiter
+      return get_custom_delimiter if @input.start_with?("//")
+      DEFAULT_DELIMITER
+    end
+
+    def get_custom_delimiter
+      @input[2]
+    end
+
+    def sanitize_input(delimiter)
+      @input.gsub(/\n+/, delimiter)
     end
 
     def check_numbers(numbers)
