@@ -51,6 +51,6 @@ describe StringCalculator::Calculator do
   end
 
   context "Calling with numbers larger than 1000" do
-    specify { expect(calc.add("1000,1001,2000")).to eq(1000)  }
+    specify { expect(calc.add("1000,1001,2000")).to eq(1000) }
   end
 end
