@@ -5,19 +5,12 @@ describe StringCalculator::Calculator do
   subject(:calc) { StringCalculator::Calculator.new }
 
   context 'Adding empty string' do
-    it 'should return 0' do
-      calc.add("").should eq(0)
-    end
-
-    it 'should return 2' do
-      calc.add("2").should eq(2)
-    end
+    specify { expect(calc.add("")).to eq(0) }
+    specify { expect(calc.add("2")).to eq(2) }
   end
 
   context 'Adding two numbers in string' do
-    it 'should return 14' do
-      calc.add("8,6").should eq(14)
-    end
+    specify { expect(calc.add("8,6")).to eq(14) }
   end
 
   context 'Adding unlimited amount of numbers' do
@@ -29,9 +22,7 @@ describe StringCalculator::Calculator do
   end
 
   context 'Handles many kinds of delimiters' do
-    it 'Should return 12' do
-      calc.add("//@\n1@1@10").should eq(12)
-    end
+    specify { expect(calc.add("//@\n1@1@10")).to eq(12) }
 
     it 'should allow linebreak as a delimeter' do
       calc.add("//\n
@@ -58,5 +49,4 @@ describe StringCalculator::Calculator do
       )
     end
   end
-
 end
